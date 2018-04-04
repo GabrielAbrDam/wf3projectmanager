@@ -2,7 +2,7 @@
 
 <nav>
 	<div> 
-		<h1>PM : the Ninja Cats</h1>
+		<h1>Project Manager: the Ninja Cats</h1>
 		<ul>
 			<li><a href="">Menu</a></li>
 			<li><a href="">Galery</a></li>
@@ -13,6 +13,16 @@
 	</div>
 	
 </nav>
-<img class="imgLogo" src="https://cdn.designcrowd.com/blog/2016/October/cat-day-logos/13_300.png" alt="miaou"/>
 
 </header>
+
+{% set infoMessage = app.flashes('info') %}
+
+{% if infoMessage is not empty %}
+
+<div class="container">
+	{% for message in infoMessage %}
+	<p class="alert alert-success">{{ message }}</p>
+	{% endfor %}
+</div>
+{% endif %}

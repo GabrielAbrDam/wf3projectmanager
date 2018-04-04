@@ -3,6 +3,7 @@
 	transition-duration: 0.3s;
 }
 
+
 img{
 	
 	border-radius:65px;
@@ -46,6 +47,8 @@ body{
 	margin: auto;
 	background-color: #EAEAEA;
 	width: 70%;
+	border: 10px solid gray;
+	border-radius: 10px;
 }
 
 .imgLogo{

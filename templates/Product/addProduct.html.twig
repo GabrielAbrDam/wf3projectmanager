@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+	{#comments#}
+ {% block body %}
+ {# {{ form(formular) }}#}
+ <div class="container">	
+ {{ form_start(formular) }}
+ 
+ 	{# {{ form_errors(formular.name) }}
+    {{ form_label(formular.name) }}
+    {{ form_widget(formular.name) }} #}
+    
+    {{ form_row(formular.name) }}
+    
+    {{ form_row(formular.description) }}
+    
+    {{ form_row(formular.version) }}
+    
+    {{ form_row(formular.submit) }}
+    
+  {{ form_rest(formular) }}
+ {{ form_end(formular) }}
+ </div>
+ {% endblock %}

@@ -3,9 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @UniqueEntity(
+ *      fields={"name"},
+ *      errorPath="name",
+ *      message="This Name is already in use"
+ * )
  */
 class Product
 {
@@ -23,11 +31,16 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     * pattern="#^\d+\.\d+\.\d+$#",
+     * message= "The version must follow the pattern "
+     * )
      */
     private $version;
 
