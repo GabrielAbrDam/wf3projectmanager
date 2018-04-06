@@ -1,18 +1,25 @@
 <header>
-
-<nav>
-	<div> 
-		<h1>The Ninja Project Manager</h1>
+	<div>
 		<ul>
-			<li><a href="{{ path('hompage') }}">Home</a></li>
-			<li><a href="">Galery</a></li>
-			<li><a href="">Login</a></li>
-			<li><a href="{{ path('add_user') }}">Sign up</a></li>
+			<li><a href="http://localhost/fr">FR</a></li>
+			<li><a href="http://localhost/en">EN</a></li>
 		</ul>
-	
-	</div>
-	
-</nav>
+    </div>
+    <nav>
+    	<div> 
+    		<h1 {{ path('hompage_translation') }}>{{'HEADER.H1'|trans }}</h1>
+    		<ul>
+    			<li><a class="liNav" href="{{ path('hompage_translation') }}">
+    			{{'HEADER.HOME'|trans }}</a></li>
+    			<li><a class="liNav" href="{{ path('hompage_translation') }}" >{{'HEADER.GALERY'|trans }}</a></li>
+    			<li><a class="liNav" href="">Login</a></li>
+    			<li><a class="liNav" href="{{ path('add_user') }}">{{'HEADER.REGISTER'|trans }}</a></li>
+    			<li><a class="liNav" href="{{ path('display_product') }}">List Products</a></li>
+    		</ul>
+    	
+    	</div>
+    	
+    </nav>
 
 </header>
 

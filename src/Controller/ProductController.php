@@ -14,6 +14,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Repository\ProductRepository;
 
 class ProductController
 {
@@ -54,6 +55,27 @@ class ProductController
                 ]
                 )
             );
+        
+              
+        
+    }
+    public function displayProduct
+    (
+        Environment $twig,
+        ProductRepository $productRepository)
+    {
+        
+        $products= $productRepository->findAll();
+        return new Response
+        (
+            $twig->render(
+                'Product/displayProduct.html.twig',
+                ['products' => $products]
+            )
+        );
+        
+            
+            
         
     }
 }

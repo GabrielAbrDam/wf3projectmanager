@@ -17,6 +17,8 @@ use Twig\Environment;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class UserController
 {
@@ -33,22 +35,39 @@ class UserController
         
         $user = new User();
         $builder = $factory->createBuilder(FormType::class, $user);
-        $builder->add('username', TextType::class)
-            ->add('firstname', TextareaType::class)
-            ->add('lastname', TextType::class)
-            ->add('email', TextType::class)
-            ->add('password', PasswordType::class)
-            ->add('password', RepeatedType::class,
+        $builder->add('username', TextType::class,
+            [
+                'label' => 'FORM.USER.USERNAME'
+            ]
+            )
+            ->add('firstname', TextareaType::class,
                 [
+                    'label' => 'FORM.USER.FIRSTNAME'
+                ])
+            ->add('lastname', TextType::class,
+                [
+                    'label' => 'FORM.USER.LASTNAME'
+                ])
+            ->add('email', TextType::class,
+                [
+                    'label' => 'FORM.USER.EMAIL'
+                ])
+            ->add('password', PasswordType::class,
+                [
+                    'label' => 'FORM.USER.PASSWORD.FIRST'
+                ])
+            ->add('password', RepeatedType::class,
+                [   
                     'type' => PasswordType::class,
                     'invalid_message' => 'The password fields must must match :)',
                     'options' => ['attr' => ['class' => 'password-']],
                     'required' => true,
-                    'first_options' =>['label' => 'Password'],
-                    'second_options' => ['label' => 'Repeat Password'],
+                    'first_options' =>['label' => 'FORM.USER.PASSWORD.FIRST'],
+                    'second_options' => ['label' => 'FORM.USER.PASSWORD.SECOND'],
                 ]
             )
-            ->add('submit', SubmitType::class);
+            ->add('submit', SubmitType::class,
+                ['label' => 'FORM.USER.SUBMIT']);
         
             $form = $builder->getForm();
             
@@ -62,11 +81,17 @@ class UserController
                 $message->setFrom('wf3pm@localhost.com')
                     ->setTo($user->getEmail())
                     ->setSubject('Validate your account')
+                    ->setContentType('text/html')
                     ->setBody(
                         $twig->render(
                             'mail/account_creation.html.twig',
                             ['user' => $user]
                         )
+                    )->addPart($twig->render(
+                        'mail/account_creation.txt.twig',
+                        ['user' => $user]
+                        )
+                        ,'text/plain'
                     );
                 
                 $mailer->send($message);
@@ -107,6 +132,24 @@ class UserController
        
        return new Response('hello guys :) :'.$token);
    }
+   public function usernameExist(
+       Request $request,
+       UserRepository $userRepository
+       ){
+            $username = $request->request->get('username');
+            $unavailable = false;
+            if(!empty($username)){
+            $username = $userRepository->usernameExist($username);
+            }
+            return new JsonResponse(
+                [
+                    'available' =>!$unavailable
+                ]);
+       
+       
+        }
+   
+   
 }
 
 

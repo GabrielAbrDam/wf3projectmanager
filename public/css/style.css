@@ -28,7 +28,7 @@ ul {
 	justify-content: flex-end; 
 
 }
-li{
+.liNav{
 	border: 1px solid #C2BEBE;
 	border-radius : 5px;
 	background-color: #C2BEBE;
@@ -37,6 +37,14 @@ li{
 li:hover{
 	background-color: #DFD9D9;
 	
+}
+
+dl{
+	list-style: none;
+	
+}
+.liListProduct{
+	list
 }
 
 a{

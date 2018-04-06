@@ -1,0 +1,27 @@
+HEADER:
+    HOME: Accueil
+    REGISTER: S'enregistrer 
+    H1: Le Projet Ninja
+    GALERY: Galeries
+   
+FORM:
+    PRODUCT:
+        NAME: Nom
+        DESCRIPTION: Description du Projet
+        VERSION: Version du Projet
+        SUBMIT: envoyé
+        PLACEHOLDER:
+            NAME: autre nom 
+            DESCRIPTION: autre description
+            VERSION: 0.0.0
+            
+    USER:
+        USERNAME: Nom d'utilisateur
+        FIRSTNAME: Prenom
+        LASTNAME: Nom
+        EMAIL: E-mail
+        SUBMIT: Envoyé
+        PASSWORD:
+            FIRST: Mot de passe
+            SECOND: Confirmation de mot de passe
+            

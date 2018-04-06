@@ -1,0 +1,26 @@
+HEADER:
+    HOME: Home
+    REGISTER: Sign Up
+    H1: The Ninja Project Manager
+    GALERY: Galery
+FORM:
+    PRODUCT:
+        NAME: Name
+        DESCRIPTION: Description du Projet
+        VERSION: Version du Projet
+        SUBMIT: envoyé
+        PLACEHOLDER:
+            NAME: autre nom 
+            DESCRIPTION: autre description
+            VERSION: 0.0.0
+    USER:
+        USERNAME: Username
+        FIRSTNAME: Firstname
+        LASTNAME: Lastname
+        EMAIL: E-mail
+        SUBMIT: Submit
+        PASSWORD:
+            FIRST: Password
+            SECOND: Repeat Password
+           
+        
