@@ -1,5 +1,5 @@
 *{
-	margin:10px;
+	
 	transition-duration: 0.3s;
 }
 
@@ -45,10 +45,11 @@ a{
 }
 body{
 	margin: auto;
-	background-color: #EAEAEA;
+	background-color: #D3CFCF;
 	width: 70%;
-	border: 10px solid gray;
+	border: 8px solid #D3CFCF;
 	border-radius: 10px;
+	box-shadow: 2px 2px 20px 20px #D3CFCF;
 }
 
 .imgLogo{
@@ -69,6 +70,6 @@ footer{
 }
 
 footer{
-	padding:5px;
+	
 }
 

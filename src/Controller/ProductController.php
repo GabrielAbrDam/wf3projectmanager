@@ -33,8 +33,6 @@ class ProductController
             ->add('submit', SubmitType::class);
         
             $form = $builder->getForm();
-        
-            $form = $builder->getForm();
             
             $form->handleRequest($request);
             if($form->isSubmitted()&& $form->isValid()){
