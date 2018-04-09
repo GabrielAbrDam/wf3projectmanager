@@ -7,10 +7,13 @@
  */
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
@@ -21,7 +24,7 @@ use Ramsey\Uuid\Uuid;
  *      message="This User Name is already in use" 
  *)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -69,9 +72,20 @@ class User
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $emailToken;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Role")
+     */
+    private $roles = [];
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $salt;
     
     public function __construct(){
         $this->setEmailToken(Uuid::uuid1());
+        $this->roles = new ArrayCollection();
     }
     
     public function getId()
@@ -162,4 +176,56 @@ class User
 
         return $this;
     }
+
+    /**
+     * @return Collection|Role[]
+     */
+    public function getRoles(): Collection
+    {
+        $strings = [];
+        foreach ($this->roles as $role){
+            $strings[]=$role->getLabel();
+        }
+        return $strings;
+    }
+    
+    /**
+     * Romovews sensitives data from the user
+     * 
+     * this is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+   public function eraseCredentials()
+    {
+        return;
+    }
+
+    public function addRole(Role $role): self
+    {
+        if (!$this->roles->contains($role)) {
+            $this->roles[] = $role;
+        }
+        return $this;
+    }
+
+    public function removeRole(Role $role): self
+    {
+        if ($this->roles->contains($role)) {
+            $this->roles->removeElement($role);
+        }
+
+        return $this;
+    }
+
+    public function getSalt(): ?string
+    {
+        return $this->salt;
+    }
+
+    public function setSalt(string $salt): self
+    {
+        $this->salt = $salt;
+
+        return $this;
+    } 
 }

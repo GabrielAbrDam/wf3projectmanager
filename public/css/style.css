@@ -80,4 +80,15 @@ footer{
 footer{
 	
 }
+.username-available .username-validation{
+	color:green;
+}
+
+.username-unavailable .username-validation{
+	color:red;
+	
+}
+
+
+
 

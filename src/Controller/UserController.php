@@ -135,19 +135,20 @@ class UserController
    public function usernameExist(
        Request $request,
        UserRepository $userRepository
-       ){
-            $username = $request->request->get('username');
-            $unavailable = false;
-            if(!empty($username)){
-            $username = $userRepository->usernameExist($username);
-            }
-            return new JsonResponse(
-                [
-                    'available' =>!$unavailable
-                ]);
-       
-       
+   ){
+        $username = $request->request->get('username');
+        $unavailable = false;
+        
+        if(!empty($username)){
+            $unavailable = $userRepository->usernameExist($username);
         }
+        
+        return new JsonResponse(
+            [
+                'available' =>!$unavailable
+            ]
+        );
+   }
    
    
 }

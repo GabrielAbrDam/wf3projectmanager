@@ -5,7 +5,12 @@
 {{ form_start(userFormular) }}
 
 </div>#}
+<div>
 {{ form(userFormular) }}
 
-
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+	<script src="/js/register.js"></script>	
 {% endblock %}
