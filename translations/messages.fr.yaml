@@ -3,6 +3,8 @@ HEADER:
     REGISTER: S'enregistrer 
     H1: Le Projet Ninja
     GALERY: Galeries
+    LOGOUT: Deconnexion
+    LOGIN: Se Logger
    
 FORM:
     PRODUCT:

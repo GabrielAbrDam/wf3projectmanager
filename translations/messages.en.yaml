@@ -3,6 +3,8 @@ HEADER:
     REGISTER: Sign Up
     H1: The Ninja Project Manager
     GALERY: Galery
+    LOGOUT: Logout
+    LOGIN: Login
 FORM:
     PRODUCT:
         NAME: Name

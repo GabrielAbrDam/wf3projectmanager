@@ -178,9 +178,9 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Role[]
+     * @return array[]
      */
-    public function getRoles(): Collection
+    public function getRoles(): array
     {
         $strings = [];
         foreach ($this->roles as $role){

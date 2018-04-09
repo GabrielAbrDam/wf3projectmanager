@@ -9,12 +9,19 @@
     	<div> 
     		<h1 {{ path('hompage_translation') }}>{{'HEADER.H1'|trans }}</h1>
     		<ul>
-    			<li><a class="liNav" href="{{ path('hompage_translation') }}">
-    			{{'HEADER.HOME'|trans }}</a></li>
-    			<li><a class="liNav" href="{{ path('hompage_translation') }}" >{{'HEADER.GALERY'|trans }}</a></li>
-    			<li><a class="liNav" href="">Login</a></li>
-    			<li><a class="liNav" href="{{ path('add_user') }}">{{'HEADER.REGISTER'|trans }}</a></li>
+    			
+    			<li><a class="liNav" href="{{ path('hompage_translation') }}">{{'HEADER.HOME'|trans }}</a></li>
     			<li><a class="liNav" href="{{ path('display_product') }}">List Products</a></li>
+    			
+    		
+    			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    				<li><a class="liNav" href="{{ path('logout') }}">{{'HEADER.LOGOUT'|trans }}</a></li>
+    				<li><a class="liNav" href="displayProduct.html.twig">Add Products</a></li>
+    			{% else %}
+        			<li><a class="liNav" href="{{ path('login') }}">{{'HEADER.LOGIN'|trans }}</a></li>
+        			<li><a class="liNav" href="{{ path('add_user') }}">{{'HEADER.REGISTER'|trans }}</a></li>
+    			{% endif %}
+    		
     		</ul>
     	
     	</div>
