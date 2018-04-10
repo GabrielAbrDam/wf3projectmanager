@@ -29,8 +29,9 @@
     </div>
     
     {{ form(form) }}
-    {% block javascripts %}
+{% endblock %}
+
+{% block javascripts %}
     {{ parent() }}
-	<script src="/js/register.js"></script>	
-    {% endblock %}
+	<script src="/js/commentFileAdder.js"></script>	
 {% endblock %}
