@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="card border-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{ product.getVersion() }}</div>
+            <div class="card-body text-dark">
+               	 <h5 class="card-title">{{ product.getName() }}</h5>
+               	 <p class="card-text">{{ product.getDescription() }}</p>
+               	 
+               	 {% for comment in product.getComments() %}
+                 <p class="card-text">{{ comment.getComment() }}</p>
+                   	 
+               	 {% for file in comment.getfiles() %}
+               	 {% if file.getMimeType()|slice(0,6)== 'image/' %}
+               	 <img class="img-responsive col-xl-12 col-md-6" alt="img" src="{{ file.getFileUrl() }}">
+               	 
+               	 {% else %}
+               	 	<a href="{{ file.getFileUrl() }}">
+                   	 	<button class="btn btn-success">
+                       		 <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>	
+                       		 {{ 'product.DOWNLOAD' | trans }} {{ file.getName() }}
+                   		 </button>
+               		 </a>
+               	 {% endif %}
+               {% endfor %}
+               {% endfor %}
+           	 
+        </div>
+    </div>
+    
+    {{ form(form) }}
+    {% block javascripts %}
+    {{ parent() }}
+	<script src="/js/register.js"></script>	
+    {% endblock %}
+{% endblock %}

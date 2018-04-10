@@ -13,8 +13,20 @@ hompage_translation:
         _locale: 'en|fr'
  
 add_product:
-    path: /{_locale} /add/product
+    path: /{_locale}/add/product
     controller: App\Controller\ProductController::addProduct
+    requirements:
+        _locale: 'en|fr'
+
+detail_product:
+    path: /{_locale}/detail/product/{id}
+    controller: App\Controller\ProductController::detailProduct
+    requirements:
+        _locale: 'en|fr'
+        
+display_product:
+    path: /{_locale}/display/product
+    controller: App\Controller\ProductController::displayProduct
     requirements:
         _locale: 'en|fr'
         
@@ -22,7 +34,7 @@ username_available:
     path: /username/available
     controller: App\Controller\UserController::usernameExist
     methods: ['POST']
-    
+
 login:
     path: /{_locale}/login
     controller: App\Controller\UserController::login
@@ -30,11 +42,7 @@ login:
 logout:
     path: /logout
 
-display_product:
-    path: /{_locale} /display/product
-    controller: App\Controller\ProductController::displayProduct
-    requirements:
-        _locale: 'en|fr'
+
 
 add_user:
     path: /{_locale} /sign/up

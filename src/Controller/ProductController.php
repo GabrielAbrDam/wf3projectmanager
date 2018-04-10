@@ -15,6 +15,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Repository\ProductRepository;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Form\CommentType;
+use App\Entity\Comment;
 
 class ProductController
 {
@@ -55,10 +58,8 @@ class ProductController
                 ]
                 )
             );
-        
-              
-        
     }
+    
     public function displayProduct
     (
         Environment $twig,
@@ -73,10 +74,36 @@ class ProductController
                 ['products' => $products]
             )
         );
-        
-            
-            
-        
     }
+    
+    public function detailProduct (
+        Environment $twig,
+        ProductRepository $productRepository,
+        FormFactoryInterface $formFactory,
+        $id  
+    ) {
+        $product=$productRepository->find($id);
+        if(!$product){
+            throw new NotFoundHttpException();
+        }
+        
+        $comment= new Comment();
+        $form = $formFactory->create(
+            CommentType::class,
+            $comment,
+            ['stateless' => true]
+        );
+        
+        return new Response(
+        $twig->render(
+            'Product/detailProduct.html.twig',
+            [
+                'product' => $product,
+                'form'=> $form->createView()
+            ]
+            )
+        );
+    }
+    
 }
 
